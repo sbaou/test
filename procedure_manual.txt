@@ -1,0 +1,27 @@
+github及びgitの初期設定に関するドキュメントです。
+
+発生していた現象と環境は以下の通り。
+
+<環境>
+OS      : macOS High Sierra
+git ver.: 2.15.2(Apple Git-101.1)
+
+<現象>
+ローカルリポジトリで作成したファイルを
+リモートリポジトリにpushしようとすると、エラーが発生
+エラー内容は下記
+"failed to push some refs to xxxx" (xxxxは自分の環境）
+
+<原因>
+GitHubでリポジトリ作成したタイミングで、README.mdがコミット
+されているにも関わらず、それをローカルリポジトリに取り込まず
+ローカルリポジトリのソースをコミットしてしまったのが原因か？
+https://qiita.com/takanatsu/items/fc89de9bd11148da1438
+
+<対策>
+git clone https://github.com/xxxx/yyyy.git
+git fetch
+git merge --allow-unrelated-histories origin/master
+git push origin master
+
+
